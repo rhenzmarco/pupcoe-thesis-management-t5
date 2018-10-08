@@ -1,0 +1,192 @@
+  <link rel="stylesheet" href="/assets/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+  <script src="/assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  {{!-- 
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css"> --}}
+  {{!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --}}
+  <script src="/assets/jquery-3.3.1.min.js"></script>
+  {{!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> --}}
+  {{!-- // <script src="/admin/js/bootstrap.min.js"></script> --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+  <!-- FONT -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Candal">
+
+  <!-- ICONS -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body{
+  background-color: lightblue;
+  margin: 0px;
+  border:0px;
+  font-family: helvetica,arial;
+  margin:0px;
+  padding: 0px;
+}
+.fluid{
+  background: #66ccff;
+  padding: 5px;
+
+}
+#header{
+  padding: 10px;
+}
+#header img{
+  height: 8%;
+  margin-left: 25px;
+}
+#tabs{
+  border:1px solid skyblue;
+  float: left;
+  height: 83%;
+  background-color: #005b9A;
+  color: white;
+}
+#tabs img {
+  height: 5%;
+  margin-bottom: -7px; 
+}
+#tabs ul li{
+  list-style: none;
+  
+}
+.liss{
+  padding: 0px;
+  color: white;
+}
+.liss li{
+  border-bottom: 2px solid skyblue;
+  font-size: 20px;
+  padding: 10px;
+  color:white;
+}
+.linee{
+  width: 100%;
+  text-align: center;
+  background: #8c8984;
+  color: white;
+}
+.spc{
+  border:3px solid lightblue;
+
+}
+.cont{
+  border: 1px solid lightblue;
+  display: inline-block;
+  color: black;
+    
+}
+#main-content{
+  border: 3px solid white ;
+  background-color: white;
+  width: 75%;
+  margin:10px;
+}
+ul li:hover{
+  background-color: #0099cc;
+  cursor: pointer;
+  
+
+}
+a:active{
+  background-color: #0099cc;
+}
+a{
+  text-decoration: none;
+  color: white;
+}
+iframe{
+  height: 95%;
+  width: 100%;
+}
+.dii{
+  
+  display: inline-block;
+}
+
+.usrname{
+  float: right;
+  margin: 15px;
+}
+#titleev{
+  width: 50%;
+  font-size: 1em;
+}
+.dets{
+  width: 50%;
+  font-size: 12px;
+
+  align-self: right;
+  border:2px solid black;
+}
+.addmin{
+  border: 2px solid skyblue;
+  margin: 50px;
+
+}
+.areg input{
+
+  margin: 5px;
+}
+.emplo{
+  margin: 20px auto;
+  border: 5px solid skyblue;
+  background-color: white;
+  width: 60%;
+  font-size: 17px;
+  padding: 10px;
+}
+.emplo input,select{
+  margin: 10px;
+  width: 70%;
+}
+</style>
+<!DOCTYPE html>
+  <html>
+  <head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="Admin_panel_index.css">
+
+  </head>
+  <body>
+    <div class="fluid" id="header">
+      <img src="/cpe_logo.png">
+
+    </div>
+    <div class="linee" style="height: 1em;"></div>
+    <div class="sqr">
+    <nav>
+      <div class="cont" id="tabs">
+        <ul class="liss" style="padding: 0px;">
+          <a href="/admin" ><li><img src="img/update1.png">Dashboard</li></a>
+          <a href="/admin/faculty/list"><li><img src="img/update1.png">Faculty</li></a>
+           <a href="/admin/student/list"><li><img src="img/update1.png">Students</li></a>
+          <a href="/admin/class/list"><li><img src="img/update1.png">Classes</li></a>
+          
+          
+        </ul>
+      </div>
+      <div class="cont tablle" id="main-content">
+      {{{body}}}
+      </div>
+    
+
+  </body>
+ <script>
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.maxHeight){
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      } 
+    });
+  }
+  </script>
+
+  </html>

@@ -1,29 +1,40 @@
 
+<style>
+.table-responsive{
 
-<div class="container">
-	<div>
-    <form action="/admin/class/create" method="post">
-  		<div class="panel panel-default">
-  			<div class="panel-heading">
-  				<h3>Add Class</h3>
-  			</div>
-  			<div class="panel-body" >
+  font-family: helvetica;
+  font-size: 20px;
+}
+.product-legends{
+  font-family: georgia;
+  font-size: 30px;
+  width:500px;
+}
+</style>
+<div class="container" >
+  <form action="/admin/student/create" method="post">
+        <div class="row">
+        <fieldset class="product-fields">
+      <legend class="product-legends">
+        <strong>A D D&nbsp;&nbsp;&nbsp;  C L A S S</strong>
+      </div>
+      <div class="panel-body">
           {{#if success}}
             <div class="alert alert-success">
               {{{success}}}
             </div>  
           {{/if}}
           <div class="form-group">
-            <label>Batch</label>
-            <select class="form-control" name="batch" required="">
+            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Batch</label>
+            <select class="form-control" name="batch" required="" style=" margin-left: 28px; width:300pt;">
               {{#each year}}
                 <option value="{{this}}">{{this}}</option>
               {{/each}}
             </select>
           </div>
           <div class="form-group">
-            <label>Section</label>
-            <select class="form-control" name="section" required="">
+            <label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Section</label>
+            <select class="form-control" name="section" required="" style=" margin-left: 28px; width:300pt;">
               {{#each section}}
                 <option value="{{this}}">{{this}}</option>
               {{/each}}
@@ -31,8 +42,8 @@
           </div>
 
           <div class="form-group">
-            <label>Adviser</label>
-            <select class="form-control" name="advisorId" required="">
+            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Adviser</label>
+            <select class="form-control" name="advisorId" required style=" margin-left: 28px; width:300pt;"
               {{#each facultyList}}
                 <option value="{{this.id}}">{{this.prefix}} {{this.first_name}} {{this.middle_name}} {{this.last_name}}</option>
               {{/each}}
@@ -40,7 +51,7 @@
           </div>
 
           <div class="form-group">
-            <input type="submit" class="btn form-control btn-success" name="">
+            <input type="submit" class="btn form-control btn-success" name="" style="background-color: #262626;color:lightgray;margin-left: 28px; width: 200pt; font-size: 20px;">
           </div>
 
   			</div>

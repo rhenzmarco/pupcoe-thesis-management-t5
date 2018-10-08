@@ -1,15 +1,30 @@
-<div class="container">
-	<div class="panel panel-default">
-    <a href="/admin/class/create" class="btn">Add Class</a>
-    <div class="panel-heading">
-      <h3>Class</h3>
-    </div>
+<style>
+.table-responsive{
 
-    <div class="panel-body">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Batch</th>
+  font-family: helvetica;
+  font-size: 20px;
+}
+.product-legends{
+  font-family: georgia;
+  font-size: 30px;
+}
+</style>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <div class="container">
+   <a role="button" class="btn btn-secondary btn-lg btn-block" style="background-color: #262626;color:lightgray; margin-left: 90%; width: 200pt; font-size: 30px;"href="/admin/class/create">Add  Class</button></a>
+  <div class="products">
+    <fieldset class="product-fields">
+      <legend class="product-legends">
+        <strong>C L A S S E S</strong>
+      
+      </legend>
+      <div class="container">
+        <div class="table-responsive">
+          <table class="table table-striped table-hover table-design">
+            <thead>
+              <tr>        
+                  <th>Batch</th>
             <th>Section</th>
             <th>Adviser</th>
             <th></th>

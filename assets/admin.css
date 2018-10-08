@@ -94,6 +94,7 @@
 
 .faculty-create-information-name {
   width: 20.01em;
+    display: inline-block;
 }
 
 .faculty-create-credentials {
@@ -106,7 +107,8 @@
 .faculty-create-wrapper {
   margin-top: auto;
   margin-left: 2em;
-  margin-right: 6em;
+
+
 }
 
 

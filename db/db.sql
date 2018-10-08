@@ -19,4 +19,9 @@ CREATE TABLE class (
 	batch varchar(30),
 	section int,
 	advisor_id int
+	is_deleted boolean DEFAULT false,
 );
+ CREATE TABLE class_cluster (
+	id SERIAL PRIMARY KEY,
+	student_id int,
+	class_id int

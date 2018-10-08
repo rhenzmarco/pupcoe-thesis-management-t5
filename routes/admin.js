@@ -5,7 +5,7 @@ const admin = require('../models/admin')
 
 router.get('/', function(req, res, next) {
 	res.render('./admin/dashboard', {
-		layout: 'admin'
+		layout: 'admin1'
 	})
 })
 
@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/faculty/create', function(req, res, next) {
 	res.render('./admin/faculty_create', {
-    layout: 'admin',
+    layout: 'admin1',
     title: 'Faculty Create',
     error: req.flash('facultyCreateError'),
     success: req.flash('facultyCreateSuccess'),
@@ -61,7 +61,7 @@ router.post('/faculty/create', function(req, res, next) {
 
 router.get('/student/create', function(req, res, next) {
   res.render('./admin/student_create', {
-    layout: 'admin',
+    layout: 'admin1',
     title: 'Student Create',
     error: req.flash('studentCreateError'),
     success: req.flash('studentCreateSuccess'),
@@ -120,8 +120,8 @@ router.post('/student/create', function(req, res, next) {
 
 router.get('/faculty/list', function(req, res, next) {
   admin.listFaculty(function(facultyList) {
-    res.render('./admin/faculty_list', {
-      layout: 'admin',
+    res.render('./admin/faculty_list1', {
+      layout: 'admin1',
     title: 'Faculty list',
       facultyList: facultyList
     })
@@ -132,7 +132,7 @@ router.get('/student/list', function(req, res, next) {
   admin.listStudent(function(studentList) {
     console.log(studentList)
     res.render('./admin/student_list', {
-      layout: 'admin',
+      layout: 'admin1',
       title: 'Student List',
       success: req.flash('createClassSuccess'),
       studentList: studentList
@@ -152,7 +152,7 @@ router.get('/class/create', function(req, res, next) {
 
   admin.listFaculty(function(facultyList) {
     res.render('./admin/class_create',{
-      layout: 'admin',
+      layout: 'admin1',
       title: 'Faculty Create',
       success: req.flash('classCreateSuccess'),
       year: year,
@@ -176,7 +176,7 @@ router.post('/class/create', function(req, res, next) {
 router.get('/class/list', function(req, res, next) {
   admin.getClassList(function(classList) {
     res.render('./admin/class_list', {
-      layout: 'admin',
+      layout: 'admin1',
       classList: classList
     })
   })

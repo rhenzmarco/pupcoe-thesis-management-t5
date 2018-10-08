@@ -6,7 +6,7 @@ const db = require('../db/index')
 const user = require('../models/users')
 
 router.get('/', function(req, res, next) {
-	res.render('./login', {
+	res.render('./startlogin', {
     layout: 'main',
     error: req.flash('error')
   })
