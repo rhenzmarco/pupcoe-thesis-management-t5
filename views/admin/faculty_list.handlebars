@@ -1,0 +1,34 @@
+<div class="container">
+	<div class="panel panel-default">
+    <a href="/admin/faculty/create" class="btn">Add Faculty</a>
+    <div class="panel-heading">
+      <h3>Faculties</h3>
+    </div>
+
+    <div class="panel-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Admin?</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each facultyList}}
+            <tr>
+              <td>{{this.prefix}} {{this.first_name}} {{this.middle_name}} {{this.last_name}} {{this.suffix}}</td>
+              <td>{{this.email}}</td>
+              <td>{{this.phone_number}}</td>
+              <td>{{this.is_admin}}</td>
+              <td><a href="#">view</a></td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

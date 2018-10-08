@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>{{title}}</title>
+
+	<!-- BOOTSTRAP 3 -->
+	<link rel="stylesheet" href="/assets/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+	<script src="/assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	{{!-- 
+	<link rel="stylesheet" href="/assets/css/bootstrap.min.css"> --}}
+	{{!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --}}
+	<script src="/assets/jquery-3.3.1.min.js"></script>
+	{{!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> --}}
+	{{!-- // <script src="/admin/js/bootstrap.min.js"></script> --}}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+	<!-- FONT -->
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Candal">
+
+	<!-- ICONS -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="/assets/admin.css">
+
+<body>
+	<div class="top-navbar">
+		<div class="navbar-left">
+			<a href="/admin" >Administrator</a>
+		</div>
+		<div class="navbar-right">
+			<a href="/logout">Logout</a>
+		</div>
+	</div>
+
+  <div class="sidenav">
+    <a href="/admin" class="sidenav-menu">Dashboard</a>
+    <a href="#" class="collapsible">Faculty</a>
+    <div class="content">
+    	<a href="/admin/faculty/create">Create</a>
+    	<a href="/admin/faculty/list">List</a>
+    </div>
+    <a href="#" class="collapsible">Student</a>
+    <div class="content">
+      <a href="/admin/student/create">Create</a>
+      <a href="/admin/student/list">List</a>
+    </div>
+    <a href="#" class="collapsible">Class</a>
+    <div class="content">
+      <a href="/admin/class/create">Create</a>
+      <a href="/admin/class/list">List</a>
+    </div>
+  </div>
+
+  <div id="main">
+    {{{body}}}
+  </div>
+
+
+
+
+
+  <script>
+	var coll = document.getElementsByClassName("collapsible");
+	var i;
+
+	for (i = 0; i < coll.length; i++) {
+	  coll[i].addEventListener("click", function() {
+	    this.classList.toggle("active");
+	    var content = this.nextElementSibling;
+	    if (content.style.maxHeight){
+	      content.style.maxHeight = null;
+	    } else {
+	      content.style.maxHeight = content.scrollHeight + "px";
+	    } 
+	  });
+	}
+	</script>
+
+</body>
+</html>
