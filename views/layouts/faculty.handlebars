@@ -1,4 +1,4 @@
-  <link rel="stylesheet" href="/assets/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="/assets/bootstrap-3.3.7-dist/css/bootstrap.min.css">
   <script src="/assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
   {{!-- 
   <link rel="stylesheet" href="/assets/css/bootstrap.min.css"> --}}
@@ -144,7 +144,7 @@ iframe{
 <!DOCTYPE html>
   <html>
   <head>
-    <title>Dashboard</title>
+    <title>CpE Management System</title>
     <link rel="stylesheet" type="text/css" href="Admin_panel_index.css">
 
   </head>
@@ -158,24 +158,17 @@ iframe{
     <nav>
       <div class="cont" id="tabs">
         <ul class="liss" style="padding: 0px;">
-          <a href="/admin" ><li><img src="img/update1.png">Dashboard</li></a>
-          <a href="/admin/faculty/list"><li><img src="/update1.png">Faculty</li></a>
-           <a href="/admin/student/list"><li><img src="/update1.png">Students</li></a>
-          <a href="/admin/class/list"><li><img src="/update1.png">Classes</li></a>
-          
-          
+          <a href="/faculty" ><li><img src="/update1.png">Hi {{first_name}}</li></a>
+          <a href="/faculty/class" ><li><img src="/update1.png">Classes</li></a>
+            
         </ul>
       </div>
       <div class="cont tablle" id="main-content">
-      {{{body}}}
-      </div>
-    
-
-  </body>
- <script>
+    {{{body}}}
+  </div>
+   <script>
   var coll = document.getElementsByClassName("collapsible");
   var i;
-
   for (i = 0; i < coll.length; i++) {
     coll[i].addEventListener("click", function() {
       this.classList.toggle("active");
@@ -188,5 +181,5 @@ iframe{
     });
   }
   </script>
-
-  </html>
+ </body>
+</html> 

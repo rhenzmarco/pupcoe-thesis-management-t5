@@ -11,13 +11,19 @@ var actions = {
     .catch(e => callback(e))
   },
   getByUsername: (username,callback) => {
-    const query = {
+   const query = {
       text: 'SELECT * FROM users WHERE username = $1',
       values: [username]
     }
-    db.query(query)
-    .then(data => callback(data.rows[0]))
-    .catch(e => callback(e))
+    db.query(query).then(data => {
+      if (data.rows[0]){
+        callback(data.rows[0])
+      } else {
+        db.query('SELECT * FROM users WHERE email = $1',[username]).then(data2 => {
+          callback(data2.rows[0])
+        }).catch(e => callback(e))
+      }
+    }).catch(e => callback(e))
   },
   getByEmail: (email, callback) => {
     const query = {

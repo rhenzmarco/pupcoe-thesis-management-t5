@@ -25,3 +25,4 @@ CREATE TABLE class (
 	id SERIAL PRIMARY KEY,
 	student_id int,
 	class_id int
+	
