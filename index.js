@@ -13,8 +13,6 @@ const saltRounds = 10;
 const user = require('./models/users') 
 
 
-
-
 var app = express();
 app.engine('handlebars', exphbs({
 	defaultLayout: 'main',
@@ -75,16 +73,64 @@ passport.deserializeUser(function(id, cb) {
   });
 });
 
+
+function isAdmin(req, res, next) {
+  if (req.isAuthenticated()) {
+      if (req.user.is_admin === true) {
+          return next();
+      }
+      else{
+        res.redirect('/login/account')
+      }
+    // });
+  } else{
+    res.redirect('/login');
+  }
+}
+
+function isFaculty(req, res, next) {
+  if (req.isAuthenticated()) {
+      if (req.user.user_type === 'faculty') {
+          return next();
+      }
+      else{
+        res.redirect('/login/account')
+      }
+    // });
+  } else{
+    res.redirect('/login');
+  }
+}
+
+function isStudent(req, res, next) {
+  if (req.isAuthenticated()) {
+      if (req.user.user_type === 'student') {
+          return next();
+      }
+      else{
+        res.redirect('/login/account')
+      }
+    // });
+  } else{
+    res.redirect('/login');
+  }
+}
+
+
+
 const indexRouter = require('./routes/index')
-// const usersRouter = require('./routes/users')
+const studentRouter = require('./routes/student')
 const adminRouter = require('./routes/admin')
 const loginRouter = require('./routes/login')
+const facultyRouter = require('./routes/faculty')
 
 
 
 app.use('/', indexRouter)
 app.use('/login', loginRouter)
-app.use('/admin', adminRouter)
+app.use('/student', isStudent, studentRouter)
+app.use('/admin', isAdmin, adminRouter)
+app.use('/faculty', isFaculty, facultyRouter)
 // app.post('/asd/login', passport.authenticate('local', {successRedirect: '/', failureRedirect: '/login'}),
 //   function(req, res) {
 //     console.log('asd')

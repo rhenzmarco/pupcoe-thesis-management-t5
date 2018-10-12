@@ -22,5 +22,7 @@ var actions = {
       callback(e)
     })
   }
- }
- module.exports = actions 
+
+}
+
+module.exports = actions

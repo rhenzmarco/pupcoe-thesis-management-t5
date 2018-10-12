@@ -11,7 +11,7 @@ var actions = {
     .catch(e => callback(e))
   },
   getByUsername: (username,callback) => {
-   const query = {
+    const query = {
       text: 'SELECT * FROM users WHERE username = $1',
       values: [username]
     }

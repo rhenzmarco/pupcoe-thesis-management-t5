@@ -6,10 +6,14 @@ const db = require('../db/index')
 const user = require('../models/users')
 
 router.get('/', function(req, res, next) {
-	res.render('./startlogin', {
-    layout: 'main',
-    error: req.flash('error')
-  })
+	if (req.isAuthenticated()){
+    res.redirect('/login/account')
+  } else {
+    res.render('./startlogin', {
+      layout: 'main',
+      error: req.flash('error')
+    })
+  }
 })
 
 
@@ -44,12 +48,15 @@ router.post('/', passport.authenticate('local', {failureRedirect: '/login', fail
 
 router.use('/account', function(req, res, next) {
   if (req.isAuthenticated()) {
-    if (req.user.user_type === 'admin') {
+    if (req.user.is_admin === true) {
       res.redirect('/admin')
+    } else if (req.user.user_type === 'student') {
+      res.redirect('/student')
+    } else if (req.user.user_type === 'faculty') {
+      res.redirect('/faculty')
     }
-  }
+  } 
 })
-
 
 
 

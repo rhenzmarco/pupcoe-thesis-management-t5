@@ -1,7 +1,7 @@
 const db = require('../db/index.js')
 const bcrypt = require('bcryptjs')
 const user = require('./users.js')
-
+const _ = require('lodash')
 var actions = {
   createFaculty: (user, callback) => {
     const query = {
@@ -105,7 +105,10 @@ var actions = {
 
   getClassList: (callback) => {
     const query = {
-      text: `SELECT * FROM class INNER JOIN users ON users.id = class.advisor_id ORDER BY batch DESC, section ASC`
+      text: `SELECT class.id, batch, section, users.id as advisor_id, prefix,first_name,middle_name,last_name,suffix 
+        FROM class INNER JOIN users ON users.id = class.advisor_id 
+        WHERE is_deleted = false
+        ORDER BY batch DESC, section ASC`
     }
     db.query(query).then(data => {
       callback(data.rows)
@@ -113,8 +116,82 @@ var actions = {
       console.log(e)
       callback(e)
     })
-  }
+  },
 
+  getStudentsFromClass: (classId, callback) => {
+    const query = {
+      text: `SELECT first_name,middle_name,last_name,suffix,users.student_id,email,phone_number FROM class_cluster INNER JOIN users ON users.id = class_cluster.student_id 
+      WHERE class_id = $1`,
+      values: [classId]
+    }
+    db.query(query).then(data => {
+      callback(data.rows)
+    }).catch(e => {
+      console.log(e)
+      callback(e)
+    })
+  },
+
+  getClassData: (classId, callback) => {
+    const query = {
+      text: `SELECT class.id,batch,section,prefix,first_name,middle_name,last_name,suffix FROM class INNER JOIN users ON users.id = class.advisor_id WHERE class.id = $1`,
+      values: [classId]
+    }
+    db.query(query).then(data => {
+      callback(data.rows[0])
+    }).catch(e => {
+      console.log(e)
+      callback(e)
+    })
+  },
+
+  getStudentsNotInClass: (classId, callback) => {
+    const query = {
+      text: `SELECT * FROM users WHERE user_type = 'student' AND id NOT IN (SELECT student_id FROM class_cluster);`
+    }
+    db.query(query).then(data => {
+      callback(data.rows)
+    }).catch(e => {
+      console.log(e)
+      callback(e)
+    })
+  },
+
+  deleteClass: (classId, callback) => {
+    const query = {
+      text: `UPDATE class SET is_deleted = true WHERE id = $1`,
+      values: [classId]
+    }
+    db.query(query).then(data => {
+      callback(data.rows)
+    }).catch(e => {
+      console.log(e)
+      callback(e)
+    })
+  },
+
+  insertStudentsToThisClass: (classId, studentIdToAdd, callback) => {
+    var query
+    if (typeof(studentIdToAdd) === 'string') {
+      query = {
+        text: `INSERT INTO class_cluster (class_id, student_id) VALUES (${classId},${studentIdToAdd})`
+      }
+    } else if (typeof(studentIdToAdd) === 'object') {
+      query = {
+        text: `INSERT INTO class_cluster (class_id, student_id) VALUES (${classId},${studentIdToAdd[0]})`
+      }
+      for (x = 1; x< studentIdToAdd.length;x++){
+        query.text = query.text + ', ('+classId+', '+studentIdToAdd[x]+')'
+      }
+    }
+    
+    db.query(query).then(data => {
+      callback(data.rows)
+    }).catch(e => {
+      console.log(e)
+      callback(e)
+    })
+  }
 
 
 }

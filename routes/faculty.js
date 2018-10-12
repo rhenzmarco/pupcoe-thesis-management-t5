@@ -6,7 +6,9 @@ const db = require('../db/index')
 const user = require('../models/users')
 const student = require('../models/student')
 const faculty = require('../models/faculty')
- router.get('/', function(req, res, next) {
+
+
+router.get('/', function(req, res, next) {
   res.render('./faculty/dashboard',{
     layout: 'faculty',
     first_name: req.user.first_name,
@@ -15,7 +17,8 @@ const faculty = require('../models/faculty')
     suffix: req.user.suffix
   })
 })
- router.get('/class', function(req, res, next) {
+
+router.get('/class', function(req, res, next) {
   faculty.getClassData(req.user.id, function(classData) {
     res.render('./faculty/class_list',{
       layout: 'faculty',
@@ -27,7 +30,9 @@ const faculty = require('../models/faculty')
     })
   })
 })
- router.post('/class', function(req, res, next) {
+
+
+router.post('/class', function(req, res, next) {
   faculty.getStudentsFromThisClass(req.body.classId, function(studentsData) {
     faculty.getClassInfo(req.body.classId, function(classData) {
       console.log(classData)
@@ -44,4 +49,5 @@ const faculty = require('../models/faculty')
     
   })
 })
- module.exports = router 
+
+module.exports = router

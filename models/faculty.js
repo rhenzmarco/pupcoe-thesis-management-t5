@@ -14,7 +14,8 @@ var actions = {
       callback(e)
     })
   },
-   getClassInfo: (classId, callback) => {
+
+  getClassInfo: (classId, callback) => {
     const query = {
       text: `SELECT * FROM class WHERE id = ${classId}`
     }
@@ -25,7 +26,8 @@ var actions = {
       callback(data.rows)
     })
   },
-   getStudentsFromThisClass: (classId, callback) => {
+
+  getStudentsFromThisClass: (classId, callback) => {
     const query = {
       text: `SELECT first_name,middle_name,last_name,suffix,users.student_id,email,phone_number FROM class_cluster 
         INNER JOIN users ON users.id = class_cluster.student_id 
@@ -38,5 +40,7 @@ var actions = {
       callback(e)
     })
   }
- }
- module.exports = actions 
+
+}
+
+module.exports = actions

@@ -1,11 +1,12 @@
 var express= require('express')
 var router = express.Router()
+var _ = require('lodash')
 const admin = require('../models/admin')
-
+const user = require('../models/users')
 
 router.get('/', function(req, res, next) {
 	res.render('./admin/dashboard', {
-		layout: 'admin1'
+		layout: 'admin'
 	})
 })
 
@@ -13,7 +14,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/faculty/create', function(req, res, next) {
 	res.render('./admin/faculty_create', {
-    layout: 'admin1',
+    layout: 'admin',
     title: 'Faculty Create',
     error: req.flash('facultyCreateError'),
     success: req.flash('facultyCreateSuccess'),
@@ -61,7 +62,7 @@ router.post('/faculty/create', function(req, res, next) {
 
 router.get('/student/create', function(req, res, next) {
   res.render('./admin/student_create', {
-    layout: 'admin1',
+    layout: 'admin',
     title: 'Student Create',
     error: req.flash('studentCreateError'),
     success: req.flash('studentCreateSuccess'),
@@ -120,8 +121,8 @@ router.post('/student/create', function(req, res, next) {
 
 router.get('/faculty/list', function(req, res, next) {
   admin.listFaculty(function(facultyList) {
-    res.render('./admin/faculty_list1', {
-      layout: 'admin1',
+    res.render('./admin/faculty_list', {
+      layout: 'admin',
     title: 'Faculty list',
       facultyList: facultyList
     })
@@ -132,7 +133,7 @@ router.get('/student/list', function(req, res, next) {
   admin.listStudent(function(studentList) {
     console.log(studentList)
     res.render('./admin/student_list', {
-      layout: 'admin1',
+      layout: 'admin',
       title: 'Student List',
       success: req.flash('createClassSuccess'),
       studentList: studentList
@@ -152,7 +153,7 @@ router.get('/class/create', function(req, res, next) {
 
   admin.listFaculty(function(facultyList) {
     res.render('./admin/class_create',{
-      layout: 'admin1',
+      layout: 'admin',
       title: 'Faculty Create',
       success: req.flash('classCreateSuccess'),
       year: year,
@@ -176,14 +177,43 @@ router.post('/class/create', function(req, res, next) {
 router.get('/class/list', function(req, res, next) {
   admin.getClassList(function(classList) {
     res.render('./admin/class_list', {
-      layout: 'admin1',
+      layout: 'admin',
       classList: classList
     })
   })
 })
 
+router.post('/class/list', function(req, res, next) { 
+  if (req.body.view){
+    next()
+  } else {
+    admin.deleteClass(req.body.classId, function(data) {
+      res.redirect('/admin/class/list')
+    })
+  }
+
+})
+
 router.post('/class/list', function(req, res, next) {
-  
+  admin.getClassData(req.body.classId, function(classData) {
+    admin.getStudentsFromClass(req.body.classId, function(studentsData){
+      admin.getStudentsNotInClass(req.body.classId, function(excludedStudentsData) {
+        res.render('./admin/class_view', {
+          layout: 'admin',
+          classData: classData,
+          studentsData: studentsData,
+          excludedStudentsData: excludedStudentsData
+        })
+      })
+    })
+  })
+})
+
+router.post('/class/list/add-students', function(req,res,next) {
+  admin.insertStudentsToThisClass(req.body.classId,req.body.studentIdToAdd, function(data) {
+    res.redirect('/admin/class/list')
+  })
+
 })
 
 module.exports = router
