@@ -13,6 +13,7 @@ const saltRounds = 10;
 const user = require('./models/users') 
 
 
+
 var app = express();
 app.engine('handlebars', exphbs({
 	defaultLayout: 'main',

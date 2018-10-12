@@ -46,7 +46,7 @@ var actions = {
           if (data2.rows[0]){
             callback('Student Number is already in used.')
           } else {
-            bcrypt.hash(user.password1,5).then(hash => {
+            bcrypt.hash(user.password1,10).then(hash => {
               console.log(hash)
               const query = {
                 text: `INSERT INTO users (email,password,first_name,middle_name,last_name,suffix,phone_number,student_id, user_type) 
