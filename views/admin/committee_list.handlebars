@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-8 committee-left-panel">
+    <div class="col-md-8 committee-left-panel" style="width: 400px;">
       <h3>Commitee Members</h3>
       <hr  />
       <div>
@@ -10,7 +10,7 @@
           <option>2018</option>
         </select> --}}
       </div>
-      <div class="table-responsive">
+      <div class="table-responsive" >
         <table class="table">
           <thead>
             <tr>
@@ -65,7 +65,7 @@
                   <option value="{{this.id}}">{{this.prefix}} {{this.last_name}}, {{this.first_name}} {{this.middle_name}}</option>
                 {{/each}}
               </select>
-              <input type="submit" class="btn btn-success form-control" id="add-commitee-member" name="addCommittee" value="Add">
+              <input type="submit"  id="add-commitee-member" name="addCommittee" value="Add" class="btn btn-secondary btn-lg btn-block" style="background-color: #262626;color:lightgray; margin-left: 60%; width: 100pt; font-size: 14px;">
             </div>
           </form>
         </div>
