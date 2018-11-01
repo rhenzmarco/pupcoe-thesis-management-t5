@@ -1,0 +1,56 @@
+
+<div class="container" >
+  <form action="/admin/class/create" method="post">
+        <div class="row">
+        <fieldset class="product-fields">
+      <legend class="product-legends">
+        <strong>A D D&nbsp;&nbsp;&nbsp;  C L A S S</strong>
+      </div>
+      <div class="panel-body">
+        {{#if error}}
+          <div class="alert alert-danger">
+            {{{error}}}
+          </div>
+        {{/if}}
+        {{#if success}}
+          <div class="alert alert-success">
+            {{{success}}}
+          </div>  
+        {{/if}}
+        <div class="faculty-create-wrapper">
+<label>Batch</label>
+            <select class="form-control" style="width:300pt;"  name="batch" required="">
+              {{#each year}}
+                <option value="{{this}}">{{this}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Section</label>
+            <select class="form-control" name="section"  style="width:300pt;"  required="">
+              {{#each section}}
+                <option value="{{this}}">{{this}}</option>
+              {{/each}}
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Adviser</label>
+            <select class="form-control" style="width:300pt;" name="advisorId" required="">
+              {{#each facultyList}}
+                <option value="{{this.id}}">{{this.prefix}} {{this.first_name}} {{this.middle_name}} {{this.last_name}}</option>
+              {{/each}}
+            </select>
+          </div>
+          
+          <div class="form-group faculty-create-credentials">
+            <input type="submit" class="btn btn-success form-control" style="background-color: #262626;color:lightgray;margin-left: 28px; width: 200pt; font-size: 20px;"name="" value="Submit">
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  </fieldset>
+</div>
+</div>
+</div>

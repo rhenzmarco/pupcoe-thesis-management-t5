@@ -1,0 +1,15 @@
+#add-commitee-member {
+	margin-top: 25px;
+}
+
+.committee-right-panel {
+	height: 85vh; 
+	border-right: 1px solid black;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+.committee-left-panel {
+	height: 85vh; 
+	border: 1px solid black
+}

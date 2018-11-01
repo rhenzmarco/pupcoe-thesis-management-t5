@@ -1,0 +1,65 @@
+<div class="container">
+  <div>
+    <div>
+      <h2>Batch {{classData.batch}}</h2>
+      <h4>Section {{classData.section}}</h4>
+    </div>
+     <div>
+      <h4>Adviser: {{classData.prefix}} {{classData.first_name}} {{classData.middle_name}} {{classData.last_name}} {{classData.suffix}} </h4>
+    </div>
+     <div>
+      <input type="button" class="btn" name="" value="Add Students" data-toggle="modal" data-target="#exludedStudentsModal">
+    </div>
+  </div>
+   <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Student Number</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each studentsData}}
+          <tr>
+            <td>{{this.student_id}}</td>
+            <td>{{this.first_name}} {{this.middle_name}} {{this.last_name}} {{this.suffix}}</td>
+            <td>{{this.email}}</td>
+            <td>{{this.phone_number}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+ <!-- Modal -->
+<div id="exludedStudentsModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+     <!-- Modal content-->
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Students</h4>
+      </div>
+      
+      <div class="modal-body">
+        <form method="post" action="/admin/class/list/add-students">
+        <input type="hidden" name="classId" value="{{classData.id}}">
+        <div>
+          <select multiple style="width: 100%" size="15" name="studentIdToAdd">
+            {{#each excludedStudentsData}}
+              <option value="{{this.id}}">{{this.student_id}} - {{this.first_name}} {{this.middle_name}} {{this.last_name}} {{this.suffix}}</option>
+            {{/each}}
+          </select>
+          <div>
+            <input type="submit" name="addStudents" value="Add Students">
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+   </div>
+</div> 
